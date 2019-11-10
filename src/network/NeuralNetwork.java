@@ -84,7 +84,7 @@ public class NeuralNetwork {
      */
     public Score[] test(double[][] data) {
         // TODO 2
-        throw new UnsupportedOperationException("Not yet implemented!");
+        return new Score[]{new Score(0,Math.random())};
     }
 
     public InputNeuron[] getInputNeurons() {
