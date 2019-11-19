@@ -30,7 +30,10 @@ public class NeuralNetwork {
      */
     private void createInputLayer(int amount) {
         // TODO 1
-        throw new UnsupportedOperationException("Not yet implemented!");
+        inputNeurons = new InputNeuron[amount];
+        for (int i = 0; i < inputNeurons.length; i++) {
+            inputNeurons[i] = new InputNeuron();
+        }
     }
 
     /**
@@ -41,7 +44,10 @@ public class NeuralNetwork {
      */
     private void createOutputLayer(int amount, ActivationFunction activationFunction) {
         // TODO 1
-        throw new UnsupportedOperationException("Not yet implemented!");
+        outputNeurons = new OutputNeuron[amount];
+        for (int i = 0; i < outputNeurons.length; i++) {
+            outputNeurons[i] = new OutputNeuron(activationFunction);
+        }
     }
 
     /**
@@ -49,7 +55,11 @@ public class NeuralNetwork {
      */
     private void createFullMesh() {
         // TODO 1
-        throw new UnsupportedOperationException("Not yet implemented!");
+        for (int i = 0; i < inputNeurons.length; i++) {
+            for (int j = 0; j < outputNeurons.length; j++) {
+                outputNeurons[j].addConnection(new Connection(inputNeurons[i], Math.random()));
+            }
+        }
     }
 
 
@@ -60,6 +70,12 @@ public class NeuralNetwork {
      */
     private void setInput(double[][] data) {
         // TODO 2
+        int counter = 0;
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data[i].length; j++) {
+                inputNeurons[counter++].setValue(data[i][j]);
+            }
+        }
     }
 
 
@@ -73,18 +89,33 @@ public class NeuralNetwork {
      */
     public void train(double[][] data, int label, double epsilon) {
         // TODO 2
+        setInput(data);
+        for (int i = 0; i < outputNeurons.length; i++) {
+            if (i == label) {
+                outputNeurons[i].learn(1.0, epsilon);
+            } else {
+                outputNeurons[i].learn(0.0, epsilon);
+            }
+        }
     }
 
     /**
      * Guesses your drawing, take each outputNeurons value and use the comparability of Score,
      * to return the result in descending order
      *
-     * @param data    a grayscale image, for the input neurons
+     * @param data a grayscale image, for the input neurons
      * @return scores an ordered list, starting with the digit with the highest probability
      */
     public Score[] test(double[][] data) {
         // TODO 2
-        throw new UnsupportedOperationException("Not yet implemented!");
+        setInput(data);
+        Score[] scores = new Score[outputNeurons.length];
+        for (int i = 0; i < outputNeurons.length; i++) {
+            double likeliness = outputNeurons[i].getValue();
+            scores[i] = new Score(i, likeliness);
+        }
+        Arrays.sort(scores);
+        return scores;
     }
 
     public InputNeuron[] getInputNeurons() {

@@ -32,6 +32,11 @@ public class OutputNeuron {
      */
     public void learn(double should, double epsilon) {
         // TODO 2
+        double value=this.getValue();
+        double error = should - value;
+        for (Connection connection : this.getConnections()) {
+            connection.addWeight(epsilon * error * function.getDerivative().activate(value) * connection.getInputNeuron().getValue());
+        }
     }
 
     /**
@@ -41,7 +46,7 @@ public class OutputNeuron {
      */
     public double getValue() {
         // TODO 1
-        return 0.0;
+        return function.getActivationFunction().activate(connections.stream().mapToDouble(Connection::getValue).sum());
     }
 
     public List<Connection> getConnections() {

@@ -4,7 +4,7 @@ public class Connection {
     private InputNeuron inputNeuron;
     private double weight;
 
-    public Connection(InputNeuron inputNeuron){
+    public Connection(InputNeuron inputNeuron) {
         this(inputNeuron, 0.0);
     }
 
@@ -25,14 +25,14 @@ public class Connection {
      */
     public double getValue() {
         // TODO 1
-        return 0.0;
+        return inputNeuron.getValue() * weight;
     }
 
     /**
      * @param delta, the weight which should be added to the existing weight
      */
     public void addWeight(double delta) {
-        // TODO 2
+        weight += delta;
     }
 
     /**
