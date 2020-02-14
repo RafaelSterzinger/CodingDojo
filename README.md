@@ -6,4 +6,4 @@ __Projekt Clonen und Framework aufsetzen__
 3. Wähle die _Project SDK_ aus. _File_ -> _Project Structure..._ (8 oder höher) und setze das korrespondierende Language Level
 4. Setze den _Output Path_
 
-Sollte etwas schiefgehen, helfen wir euch gerne vor Ort! Viel Spaß beim CodingDojo über Neuronale Netze wünscht dir iteratec!
+Sollte etwas schiefgehen, helfen wir euch gerne vor Ort! Viel Spaß beim CodingDojo über Neuronale Netze!
