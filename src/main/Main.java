@@ -9,14 +9,18 @@ import util.Score;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.net.URISyntaxException;
+
+
+/**
+ * To start the GUI, enter "gui" as a program argument
+ * To start the CLI, enter "cli" as a program argument
+ * Default is CLI
+ */
 
 public class Main {
-    public static void main(String[] args) throws IOException, URISyntaxException {
+    public static void main(String[] args) {
         if (args.length == 0 || args[0].equals("cli")) {
             NeuralNetwork neuralNetwork = new NeuralNetwork(28 * 28, 10, ActivationFunction.IDENTITY);
-            System.out.println("Loading " + MNISTDecoder.class);
             MNISTDecoder mnistDecoder = MNISTDecoder.getInstance();
             double cLearningParameter = 0.01;
             int totalIterations = 10;
@@ -44,7 +48,6 @@ public class Main {
                 System.out.println("---------------------");
             }
         } else if (args[0].equals("gui")) {
-            System.out.println("Loading " + MNISTDecoder.class);
             MNISTDecoder.getInstance();
             SwingUtilities.invokeLater(() -> {
                 JFrame frame = new JFrame("Java Coding Dojo");

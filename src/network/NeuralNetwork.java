@@ -1,6 +1,5 @@
 package network;
 
-import util.Digit;
 import util.Score;
 
 import java.util.Arrays;
